@@ -1,0 +1,129 @@
+configuration {
+	modi: "window,drun,filebrowser";
+	font: "FiraCode Nerd Font 12";
+	show-icons: true;
+	icon-theme: "Papirus";
+	drun-display-format: "{name}";
+	disable-history: false;
+	sort: true;
+	sorting-method: "fzf";
+	case-sensitive: false;
+	sidebar-mode: false;
+	/* combi-modi: "drun,window,filebrowser"; */
+	matching: "fuzzy";
+	m: "-1";
+	display-drun: "  ";
+	display-window: "  ";
+	display-filebrowser: "  ";
+	kb-cancel: "Escape,Control+g,Control+bracketleft,Super+w";
+}
+
+* {
+	/* bg: ${BACKGROUND};
+	al: ${COLOR8};
+	fg: ${FOREGROUND};
+	ac: ${COLOR4};
+	se: ${COLOR8};
+	red: ${COLOR1}; */
+	background: @bg;
+	foreground: @fg;
+	alternate-normal-background: @bg;
+	alternate-active-background: @ac;
+	alternate-urgent-background: @bg;
+	alternate-normal-foreground: @fg;
+	alternate-active-foreground: @ac;
+	selected-normal-foreground: @bg;
+	selected-normal-background: @ac;
+	selected-active-background: @ac;
+}
+
+window {
+	transparency: "real";
+	background-color: @bg;
+	text-color: @fg;
+	border: 0px;
+	border-color: @ac;
+	border-radius: 4;
+}
+
+prompt {
+	enabled: true;
+	background-color: @bg;
+	text-color: @fg;
+}
+
+entry {
+	background-color: @bg;
+	text-color: @fg;
+	placeholder-color: @fg;
+	expand: true;
+	horizontal-align: 0;
+	placeholder: "Search";
+	blink: true;
+}
+
+inputbar {
+	/* children: [ prompt, entry ]; */
+	background-color: @bg;
+	text-color: @fg;
+	expand: false;
+	border: 0px;
+	margin: 0% 0% 0% 0%;
+	padding: 0.5%;
+}
+
+listview {
+	background-color: @bg;
+	columns: 2;
+	cycle: false;
+	dynamic: true;
+	layout: vertical;
+	border: 0px;
+}
+
+button {
+	text-color: @fg;
+	horizontal-align: 0.5;
+}
+
+button selected {
+	background-color: @ac;
+	text-color: @bg;
+	border: 0px;
+}
+
+mainbox {
+	background-color: @bg;
+	border: 0px;
+	children: [ inputbar, listview, mode-switcher ];
+}
+
+element {
+	background-color: @bg;
+	text-color: @fg;
+	orientation: horizontal;
+	border: 0px;
+	children: [element-icon, element-text];
+}
+
+element-icon {
+	background-color: inherit;
+	text-color: inherit;
+}
+
+element-text {
+	background-color: inherit;
+	text-color: inherit;
+}
+
+element normal {
+	background-color: @bg;
+	text-color: @fg;
+	border: 0px;
+}
+
+element selected {
+	background-color: @ac;
+	text-color: @bg;
+	border: 0px;
+}

@@ -1,0 +1,30 @@
+#!/bin/env bash
+
+set -e
+
+NOTEDIR=$HOME/Documents/Notes
+NEWNOTE="note-$(date +%-F).md"
+NEWNOTE_MSG="New Note"
+THEMESTR=`~/scripts/rofi-theme-str ~/.xcolors/metacognition`
+
+cd $NOTEDIR
+
+if [ -f ./$NEWNOTE ]; then
+  NEWNOTE_MSG="Today"
+fi
+
+if [[ -z $(ls -A $NOTEDIR) ]]; then
+  FILENAME=`echo "[$NEWNOTE_MSG]" | rofi -theme-str "$THEMESTR" -dmenu -i -p "Notes"`
+else
+  FILENAME=`ls | sed "1 i [$NEWNOTE_MSG]" | rofi -theme-str "$THEMESTR" -dmenu -i -p "Notes"`
+fi
+
+if [[ $FILENAME == "[$NEWNOTE_MSG]" ]]; then
+  FILENAME=$NEWNOTE
+fi
+
+kitty -- nvim -c "norm Go" \
+  -c "norm Go## $(date '+%-F %H:%M')" \
+  -c "norm G2o" \
+  -c "norm zz" \
+  -c "startinsert" $FILENAME
